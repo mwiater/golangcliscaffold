@@ -22,6 +22,7 @@ func Execute() {
 	if err != nil {
 		os.Exit(1)
 	}
+
 }
 
 func init() {
@@ -34,7 +35,8 @@ func init() {
 	rootCmd.PersistentFlags().IntVarP(&Highlight, "highlight", "", 500, "Highlight files/directories over this threshold, in MB")
 	viper.BindPFlag("highlight", rootCmd.PersistentFlags().Lookup("highlight"))
 
-	rootCmd.PersistentFlags().StringVarP(&Path, "path", "p", "", "Define the path to scan. (required)")
-	rootCmd.MarkPersistentFlagRequired("path")
+	rootCmd.PersistentFlags().StringVarP(&Path, "path", "p", os.Getenv("HOME"), "Define the path to scan.")
+	rootCmd.MarkFlagRequired("path")
 	viper.BindPFlag("path", rootCmd.PersistentFlags().Lookup("path"))
+
 }

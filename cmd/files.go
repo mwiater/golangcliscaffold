@@ -1,7 +1,11 @@
 package cmd
 
 import (
-	log "github.com/sirupsen/logrus"
+	"fmt"
+
+	"github.com/mwiater/golangcliscaffold/common"
+	"github.com/mwiater/golangcliscaffold/files"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -17,12 +21,21 @@ var filesCmd = &cobra.Command{
 	Long:  `Quickly scan a directory and find large files. . Use the flags below to target the output.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if Debug {
-			for key, value := range viper.GetViper().AllSettings() {
-				log.WithFields(log.Fields{
-					key: value,
-				}).Info("Command Flag")
-			}
+			common.LogFlags()
 		}
+
+		filesFound, err := files.ReadDirRecursively(Path)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		if Filecount > len(filesFound) {
+			Filecount = len(filesFound)
+		}
+
+		filesFound = filesFound[0:Filecount]
+		files.PrintResults(filesFound)
 	},
 }
 

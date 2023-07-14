@@ -5,7 +5,8 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	log "github.com/sirupsen/logrus"
+	"github.com/mwiater/golangcliscaffold/common"
+	"github.com/mwiater/golangcliscaffold/dirs"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -20,12 +21,10 @@ var dirsCmd = &cobra.Command{
 	Long:  `Quickly scan a directory and find large directories. Use the flags below to target the output.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if Debug {
-			for key, value := range viper.GetViper().AllSettings() {
-				log.WithFields(log.Fields{
-					key: value,
-				}).Info("Command Flag")
-			}
+			common.LogFlags()
 		}
+		dirsFound, _ := dirs.ReadDirDepth(Path)
+		dirs.PrintResults(dirsFound)
 	},
 }
 
