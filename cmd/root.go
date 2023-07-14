@@ -9,6 +9,7 @@ import (
 
 var Verbose bool
 var Debug bool
+var Highlight int
 
 var rootCmd = &cobra.Command{
 	Use:   "getsize",
@@ -29,4 +30,11 @@ func init() {
 
 	rootCmd.PersistentFlags().BoolVarP(&Debug, "debug", "d", false, "Display debugging output in the console. (default: false)")
 	viper.BindPFlag("debug", rootCmd.PersistentFlags().Lookup("debug"))
+
+	rootCmd.PersistentFlags().IntVarP(&Highlight, "highlight", "", 500, "Highlight files/directories over this threshold, in MB")
+	viper.BindPFlag("highlight", rootCmd.PersistentFlags().Lookup("highlight"))
+
+	rootCmd.PersistentFlags().StringVarP(&Path, "path", "p", "", "Define the path to scan. (required)")
+	rootCmd.MarkPersistentFlagRequired("path")
+	viper.BindPFlag("path", rootCmd.PersistentFlags().Lookup("path"))
 }
