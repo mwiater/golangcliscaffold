@@ -1,7 +1,3 @@
-/*
-Copyright © 2023 Matt J. Wiater matt.wiater@gmail.com
-
-*/
 package cmd
 
 import (
@@ -10,8 +6,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var Verbose bool
+var Debug bool
+
 var rootCmd = &cobra.Command{
-	Use:   "directorylist",
+	Use:   "getsize",
 	Short: "List the size of a local directory.",
 	Long:  `This command will display the size of a directory with several different options.`,
 }
@@ -24,5 +23,4 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
