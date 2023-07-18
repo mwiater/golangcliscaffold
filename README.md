@@ -4,6 +4,6 @@ Learn how to create your first Golang CLI tool with Cobra and Viper. This step-b
 
 ## Step 6: Build Something "Useful"
 
-**Article Step:** https://medium.com/@matt.wiater/step-by-step-using-cobra-and-viper-to-create-your-first-golang-cli-tool-8050d7675093#2bf6
+**Article Step:** https://betterprogramming.pub/step-by-step-using-cobra-and-viper-to-create-your-first-golang-cli-tool-8050d7675093#2bf6
 
 **_See the main branch for full details: https://github.com/mwiater/golangcliscaffold_**
